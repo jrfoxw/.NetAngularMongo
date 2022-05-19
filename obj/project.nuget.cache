@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "tiHkrNQcYExojT1tL4NO+drKxv1TDKmLnTgYRZqb95goj4qntRK7rTpAb9mO7tEfsKrwnbnS8QMOwc0GIHr5Tg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Server\\Desktop\\Source\\.NetAngularMongo\\.NetAngularMongo.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Server\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\6.0.3\\microsoft.aspnetcore.spaproxy.6.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

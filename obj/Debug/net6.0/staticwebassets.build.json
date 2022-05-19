@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "lQreoFnIBP5NoMNqGXtcvBybOeu1L6oCvijmYHJonYw=",
+  "Source": ".NetAngularMongo",
+  "BasePath": "_content/.NetAngularMongo",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": ".NetAngularMongo\\wwwroot",
+      "Source": ".NetAngularMongo",
+      "ContentRoot": "C:\\Users\\Server\\Desktop\\Source\\.NetAngularMongo\\wwwroot\\",
+      "BasePath": "_content/.NetAngularMongo",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Server\\Desktop\\Source\\.NetAngularMongo\\wwwroot\\favicon.ico",
+      "SourceId": ".NetAngularMongo",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Server\\Desktop\\Source\\.NetAngularMongo\\wwwroot\\",
+      "BasePath": "_content/.NetAngularMongo",
+      "RelativePath": "favicon.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\favicon.ico"
+    }
+  ]
+}
