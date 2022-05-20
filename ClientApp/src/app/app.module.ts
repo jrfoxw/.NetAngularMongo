@@ -5,12 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
-import { HomeComponent } from './layout/home/home.component';
+import { NavMenuComponent } from './components/layout/nav-menu/nav-menu.component';
+import { HomeComponent } from './components/home/home.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { FetchDataComponent } from './components/fetch-data/fetch-data.component';
-import { PlayerPanelComponent } from './components/player-panel/player-panel.component';
+import { PlayerPanelComponent } from './components/panels/player-panel/player-panel.component';
 import { ButtonComponent } from './components/button/button.component';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { DataDisplayComponent } from './components/data-display/data-display.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ButtonComponent } from './components/button/button.component';
     CounterComponent,
     FetchDataComponent,
     PlayerPanelComponent,
-    ButtonComponent
+    ButtonComponent,
+    HeaderComponent,
+    DataDisplayComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -1,0 +1,21 @@
+import { Component, OnInit, Input } from '@angular/core';
+import { IMessage } from 'src/app/models/Message';
+
+@Component({
+  selector: 'app-data-display',
+  templateUrl: './data-display.component.html',
+  styleUrls: ['./data-display.component.css']
+})
+export class DataDisplayComponent implements OnInit {
+
+  @Input() title = ""
+  @Input() showDisplay: boolean = false;
+  @Input() data:IMessage[] = [];
+
+  constructor() { }
+
+  ngOnInit(): void {
+
+  }
+
+}

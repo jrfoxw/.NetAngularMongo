@@ -9,6 +9,8 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+/ClientApp/.angluar/
+/ClientApp/dist/
 
 # Build results
 [Dd]ebug/

@@ -1,0 +1,11 @@
+<h1>Entry Master</h1>
+
+
+<app-button text="Add" color="green" (btnClickEvent)="addEntry()"></app-button>
+<app-button text="Remove" color="coral" (btnClickEvent)="removeEntry()"></app-button>
+<app-button text="View Archived" color="blue" (btnClickEvent)="viewArchivedEntries()"></app-button>
+<app-button text="Clear" color="silver" (btnClickEvent)="clearEntries()"></app-button>
+
+<app-data-display title="Log Entries" [showDisplay]="true" [data]="messages"></app-data-display>
+<app-data-display title="Archived Logs" [showDisplay]="showArchived" [data]="archived"></app-data-display>
+

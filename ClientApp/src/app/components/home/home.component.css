@@ -1,0 +1,18 @@
+.box{
+    padding: 5px;
+    border: 2px solid black;
+    margin-top: 20px;
+    height: 300px;
+    overflow-x: scroll;
+
+}
+
+.archived_entry{
+    background: rgba(100,100,100,0.2);
+    color: blue;
+    border-bottom: 2px solid green;
+    box-shadow: 2px 3px 5px;
+    margin-top: 5px;
+    margin-top: 2px;
+    padding: 5px;
+}
