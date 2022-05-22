@@ -1,6 +1,6 @@
 <div class="box" *ngIf="showDisplay">
     <h3>{{title}}</h3>
-    <div *ngFor="let a of data">
-      <div class="archived_entry">{{a.id}}: {{a.user}}: {{a.text}} [{{a.date}}]</div>
+    <div *ngFor="let d of data">
+      <div class="archived_entry">{{d.id}}: {{d.user}}: {{d.text}} [{{d.date}}]</div>
       </div>
   </div>

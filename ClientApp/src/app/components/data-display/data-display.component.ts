@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IMessage } from 'src/app/models/Message';
+import { AsyncPipe } from '@angular/common';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-data-display',
@@ -10,9 +12,11 @@ export class DataDisplayComponent implements OnInit {
 
   @Input() title = ""
   @Input() showDisplay: boolean = false;
-  @Input() data:IMessage[] = [];
+  @Input() data: IMessage[] = [];
 
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit(): void {
 

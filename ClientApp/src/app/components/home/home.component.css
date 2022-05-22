@@ -1,6 +1,6 @@
 .box{
     padding: 5px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     margin-top: 20px;
     height: 300px;
     overflow-x: scroll;
@@ -15,4 +15,14 @@
     margin-top: 5px;
     margin-top: 2px;
     padding: 5px;
+}
+
+.main{
+    height: 500px;
+    width: 500px;
+    /* border: 2px solid black; */
+}
+
+.block{
+    margin-top: 10px;
 }
