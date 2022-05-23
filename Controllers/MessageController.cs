@@ -1,26 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
-using System.Threading.Tasks;
 using _NetAngularMongo.Models;
-namespace _NetAngularMongo.Controllers;
 
+namespace _NetAngularMongo.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+
+public class MessageController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<MessageController> _logger;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public MessageController(ILogger<MessageController> logger)
     {
         _logger = logger;
     }
 
+    [HttpGet]
+    [Route("message")]
+    [Route("message/get")]
     [HttpGet]
     public async Task Get()
     {
@@ -32,8 +31,8 @@ public class WeatherForecastController : ControllerBase
 
         var message = new MessageModel{
                 MessageId = 3,
-                User = "Paul",
-                Message="Helped Rick move chair to disassembly",
+                User = "Gary",
+                Message="Contacted customer about issues with chair #225",
                 DateOfEntry = new DateTime()
             };
 
@@ -41,5 +40,10 @@ public class WeatherForecastController : ControllerBase
 
         var data = new List<MessageModel>(){};
         await collection.InsertOneAsync(message);
+    }
+
+    [HttpPost]
+    public async Task Post(){
+        //
     }
 }
