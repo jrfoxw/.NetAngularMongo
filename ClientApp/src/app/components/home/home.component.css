@@ -19,10 +19,22 @@
 
 .main{
     height: 500px;
-    width: 500px;
+    width: 80%;
+    margin: auto 0;
     /* border: 2px solid black; */
 }
 
 .block{
+    display: flex;
     margin-top: 10px;
+    width: 200px;
+    height: auto;
+}
+
+.header{
+    width: 100%;
+    text-align: center;
+    height: 1.2em;
+    background: rgba(128, 128, 128, 0.243);
+    color: rgb(19, 2, 2);
 }

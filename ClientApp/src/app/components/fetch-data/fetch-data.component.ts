@@ -8,17 +8,14 @@ import { IMessage } from 'src/app/models/Message';
   templateUrl: './fetch-data.component.html'
 })
 export class FetchDataComponent {
-  //public forecasts: WeatherForecast[] = [];
+
+  public data : IMessage[] = [];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string){
     http.get<IMessage[]>(baseUrl + 'message').subscribe((data) => {
-      console.log('data: ',data);
-    });
+      console.log('Data: ', data);
+      this.data = data;
+    }, error => {console.error(error)});
   }
-//   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-//     http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
-//       this.forecasts = result;
-//     }, error => console.error(error));
-//   }
 }
 
 

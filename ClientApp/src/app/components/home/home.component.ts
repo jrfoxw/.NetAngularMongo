@@ -23,6 +23,7 @@ export class HomeComponent {
   public userData: string = ""
   public event: string = "Adding Entry"
   public eventData: string = "Adding Entry"
+  public picker: any;
 
   constructor(private messageService: MessageService){ 
     this.messageSub = new Subscription();
@@ -30,9 +31,8 @@ export class HomeComponent {
 
   ngOnInit(): void{
     console.log('Init...')
-    this.messageSub = this.messageService
-      .getMessages()
-      .subscribe((messages)=>{  this.messageData = messages });
+    this.messageData = this.messageService
+      .getMessages();
   }
 
   ngOnChanges(): void {
@@ -46,19 +46,35 @@ export class HomeComponent {
     this.messageSub.unsubscribe();
   }
   
+  makeWithdraw(): void{
+    
+  }
+
+  makeDeposit(): void{
+
+  }
+
+  checkBalance(): void {
+
+  }
+
+  checkTransactions(): void {
+
+  }
 
   addEntry(): void{
     // TODO: change to popup module.
 
-    this.messageData.push({user: this.user, text: this.eventData, date: Date.now()});
+    this.messageData.push({user: this.user, message: this.eventData, dateOfEntry: Date.now().toString()});
 
     this.messageSub = this.messageService
-      .addMessage('Add', 'Adding Entry on Button Click').
+      .addMessage(this.user, this.eventData).
       subscribe((messages: IMessage[]) => {
         messages = this.messageData;
       }).add(console.log('New Messages Array: ',this.messageData));
 
   }
+
   removeEntry(){
     this.messageService
       .addMessage('Remove','Removing Entry on Button Click.')

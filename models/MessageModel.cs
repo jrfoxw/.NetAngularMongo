@@ -10,6 +10,6 @@ namespace _NetAngularMongo.Models{
         public int MessageId { get; set; }
         public string User {get; set;} = "default";
         public string Message {get; set;} = "message";
-        public DateTime DateOfEntry {get; set;}
+        public string DateOfEntry { get; set; } = "";
     }
 }

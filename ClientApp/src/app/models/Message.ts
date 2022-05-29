@@ -1,15 +1,16 @@
 export interface IMessage{
-    id?: number
-    date?: number;
+    id?: number;
+    messageId?: number;
+    dateOfEntry?: string;
     user?: string;
-    text?: string;
+    message?: string;
 }
 
 
 export class Messages {
     public static id = 0;
     public static archived: IMessage[] = [];
-    public messages: IMessage[] = [{id: 0, user: "", text: "", date: Date.now()}];
+    public messages: IMessage[] = [{}];
 
     constructor(){
 

@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+// import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+// import { ApolloModule, Apollo } from 'apollo-angular';
+// import { InMemoryCache } from 'apollo-cache-inmemory';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -34,8 +37,10 @@ import { PlayerTableComponent } from './components/tables/player-table/player-ta
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
@@ -58,6 +63,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    // HttpLinkModule,
+    // ApolloModule,
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -85,9 +92,19 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  // constructor(private apollo: Apollo, private httpLink: HttpLink){
+  //   apollo.create({
+  //     link: httpLink.create({uri:""}),
+  //     cache: new InMemoryCache()
+
+  //   })
+  // }
+}

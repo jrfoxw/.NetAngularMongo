@@ -2,6 +2,8 @@
 using MongoDB.Driver;
 using System.Threading.Tasks;
 using _NetAngularMongo.Models;
+using Microsoft.AspNetCore.Mvc.Controllers;
+
 namespace _NetAngularMongo.Controllers;
 
 
@@ -24,17 +26,21 @@ public class WeatherForecastController : ControllerBase
     [HttpGet]
     public async Task Get()
     {
+
+        var n = new ControllerFeature().Controllers;
+        Console.WriteLine("Controllers: ", n);
+
         string databaseName = "heroeslegends";
         string collectionName = "messages";
         var client = new MongoClient("mongodb+srv://jrfoxw:packard@cluster0.rda3b.mongodb.net/?retryWrites=true&w=majority");
         var db = client.GetDatabase(databaseName);
         var collection = db.GetCollection<MessageModel>(collectionName);
 
-        var message = new MessageModel{
+        var message = new MessageModel {
                 MessageId = 3,
                 User = "Paul",
-                Message="Helped Rick move chair to disassembly",
-                DateOfEntry = new DateTime()
+                Message = "Helped Rick move chair to disassembly",
+                DateOfEntry = new DateTime().ToString()
             };
 
         Console.Write("Adding Db entry");

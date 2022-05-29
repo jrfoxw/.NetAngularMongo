@@ -1,22 +1,51 @@
-
-<div class="main">
-  <h1>Status of Chair in Repair</h1>
-
-
-  <app-button text="Add" color="green" (btnClickEvent)="addEntry()"></app-button>
-  <app-button text="Remove" color="coral" (btnClickEvent)="removeEntry()"></app-button>
-  <app-button text="View Archived" color="blue" (btnClickEvent)="viewArchivedEntries()"></app-button>
-  <app-button text="Clear" color="silver" (btnClickEvent)="clearEntries()"></app-button>
-
-  <div class="block">
-    Who: <input mat-input [(ngModel)]="userData" placeholder="user" (keyup)="updateUser()"/>
-    What: <input mat-input [(ngModel)]="eventData" placeholder="event" (keyup)="updateEvent()"/>
-  </div>
+<h1 class="header">Worlds Simplest ATM v0.5</h1>
+<div class="wrapper">
   
+  <div class="main">
+    
+    <img src="/assets/wsatm_logo.png" alt="worlds simplest atm logo"/>
 
-  <app-data-display title="Current Repairs" [showDisplay]="true" [data]="messageData"></app-data-display>
-  <app-data-display title="Archived Logs" [showDisplay]="showArchived" [data]="messageData"></app-data-display>
+    <app-button text="Withdraw" color="green" (btnClickEvent)="addEntry()"></app-button>
+    <app-button text="Deposit" color="coral" (btnClickEvent)="removeEntry()"></app-button>
+    <app-button text="Balance" color="blue" (btnClickEvent)="viewArchivedEntries()"></app-button>
+    <app-button text="Transactions" color="silver" (btnClickEvent)="clearEntries()"></app-button>
+
+    <div class="block">
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+          <app-button text="$1"></app-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <app-button text="$5"></app-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <app-button text="$10"></app-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <app-button text="$20"></app-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <app-button text="$50"></app-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <app-button text="$100"></app-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <app-button text="CLEAR"></app-button>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+      <!-- Who: <input mat-input [(ngModel)]="userData" placeholder="user" (keyup)="updateUser()"/>
+      What: <input mat-input [(ngModel)]="eventData" placeholder="event" (keyup)="updateEvent()"/>
+      Date: <input mat-input [matDatepicker]="picker"/> -->
+    </div>
+
+
+    <!-- <app-data-display title="Current Repairs" [showDisplay]="true" [data]="messageData"></app-data-display>
+    <app-data-display title="Archived Logs" [showDisplay]="showArchived" [data]="messageData"></app-data-display> -->
 
 
 
+  </div>
 </div>

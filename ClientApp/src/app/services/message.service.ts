@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IMessage } from '../models/Message';
 import { Observable, Subject, of, merge, Subscription, pipe, concat, combineLatest  } from 'rxjs';
-import { tap, map,  } from 'rxjs/operators';
+import { tap, map, catchError,  } from 'rxjs/operators';
 import { ApiService } from './api.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,31 +15,46 @@ export class MessageService {
   public archived: Subject<IMessage[]> = new Subject<IMessage[]>();
   public messages: Subject<IMessage[]> = new Subject<IMessage[]>();
   public messageLatest: any;
-  private api: string =  ""
+  private apiHttps: string =  "https://localhost:5001";
+  private api: string = "http://localhost:5000";
+  private baseURL = "";
+  private data: IMessage[] = []
 
-  constructor(private http:HttpClient, private apiService: ApiService) {
+  constructor(private http:HttpClient, private apiService: ApiService, @Inject('BASE_URL') baseUrl: string) {
     this.api = apiService.api;
+    this.baseURL = baseUrl;
    }
 
-  public getMessages(): Subject<IMessage[]>{
-    return this.messages;
+  public getMessages(): IMessage[]{
+    this.http.get<IMessage[]>(this.baseURL + 'message').subscribe((data) => {
+        console.log('Data: ', data);
+        this.data = data;
+      }, error => {console.error(error)});
+    return this.data;
 }
 
+  // TODO: Change to taking a IMessage
   public addMessage(user: string = "default", text: string = "default"): Subject<IMessage[]>{
+
+
     console.log('Adding Message => : ', user, text);
     MessageService.id += 1;
     const message: IMessage = {
-        id: MessageService.id,
+        messageId: MessageService.id,
         user: user,
-        text: text,
-        date: Date.now()
+        message: text,
+        dateOfEntry: Date.now().toString()
     }
+    console.log('Posting Message: ', message, this.baseURL)
+    this.http.post<IMessage>(this.baseURL + 'message', message).subscribe((message)=>{
+      console.log("Posting Message", message)
+    });
+            //  .pipe(catchError((error) => { console.log("Something went wrong", error)});
 
-    console.log('Adding Message: ', user, text, message);
+    //console.log('Adding Message: ', user, text, message);
     
 
     return this.messages;
-        
 
   }
 
@@ -55,6 +71,8 @@ export class MessageService {
     return this.archived;
   }
 
+  public handleError(message: string){
 
+  }
   
 }
