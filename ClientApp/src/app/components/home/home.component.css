@@ -18,16 +18,33 @@
 }
 
 .main{
+    display: flex;
     height: 500px;
-    width: 80%;
-    margin: auto 0;
-    /* border: 2px solid black; */
+    width: 60%;
+    margin: auto;
+    padding: 5px;
+    border: 2px solid white;
+    box-shadow: 1px 2px 3px black;
+    border-radius: 9px;
 }
 
-.block{
-    display: flex;
+.keypad_block{
+    border: 2px solid rgb(36, 2, 2);
+    border-radius: 9px;
     margin-top: 10px;
-    width: 200px;
+    margin-left: 5%;
+    width: 40%;
+    height: auto;
+    padding: 5px;
+    background: rgba(24, 16, 104, 0.1);
+    
+}
+
+.selection_block{
+    border: 2px solid black;
+    border-radius: 9px;
+    margin-top: 10px;
+    width: 50%;
     height: auto;
 }
 
@@ -38,3 +55,9 @@
     background: rgba(128, 128, 128, 0.243);
     color: rgb(19, 2, 2);
 }
+
+.display_total {
+    font-size: 1.5em;
+    color: green;
+}
+

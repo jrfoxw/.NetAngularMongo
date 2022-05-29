@@ -11,6 +11,7 @@ import { Observable, Subject } from 'rxjs';
 export class DataDisplayComponent implements OnInit {
 
   @Input() title = ""
+  @Input() priority: string = "";
   @Input() showDisplay: boolean = false;
   @Input() data: IMessage[] = [];
 

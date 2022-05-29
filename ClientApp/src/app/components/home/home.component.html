@@ -3,36 +3,27 @@
   
   <div class="main">
     
-    <img src="/assets/wsatm_logo.png" alt="worlds simplest atm logo"/>
+    
 
-    <app-button text="Withdraw" color="green" (btnClickEvent)="addEntry()"></app-button>
-    <app-button text="Deposit" color="coral" (btnClickEvent)="removeEntry()"></app-button>
-    <app-button text="Balance" color="blue" (btnClickEvent)="viewArchivedEntries()"></app-button>
-    <app-button text="Transactions" color="silver" (btnClickEvent)="clearEntries()"></app-button>
+    <div class="selection_block">
+      <img src="/assets/wsatm_logo.png" alt="worlds simplest atm logo" width="256" height="256"/>
+      <mat-grid-list cols="2" rowHeight="50px">
+        <mat-grid-tile><app-button text="Withdraw" color="green" (btnClickEvent)="makeATMWithdraw()"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="Deposit" color="coral" (btnClickEvent)="removeEntry()"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="Balance" color="blue" (btnClickEvent)="viewArchivedEntries()"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="Transactions" color="silver" (btnClickEvent)="clearEntries()"></app-button></mat-grid-tile>
+      </mat-grid-list>
+    </div>
 
-    <div class="block">
-      <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>
-          <app-button text="$1"></app-button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-button text="$5"></app-button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-button text="$10"></app-button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-button text="$20"></app-button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-button text="$50"></app-button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-button text="$100"></app-button>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <app-button text="CLEAR"></app-button>
-        </mat-grid-tile>
+    <div class="keypad_block">
+      <mat-grid-list cols="3" rowHeight="100px" rowWidth="50px">
+        <mat-grid-tile><app-button text="$1" (btnClickEvent)="updateValue(1)"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$5" (btnClickEvent)="updateValue(5)"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$10" (btnClickEvent)="updateValue(10)"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$20" (btnClickEvent)="updateValue(20)"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$50" (btnClickEvent)="updateValue(50)"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$100" (btnClickEvent)="updateValue(100)"></app-button></mat-grid-tile>
+        <mat-grid-tile colspan="3"><app-button text="CLEAR" (btnClickEvent)="updateValue(1)"></app-button></mat-grid-tile>
       </mat-grid-list>
 
 
@@ -40,12 +31,15 @@
       What: <input mat-input [(ngModel)]="eventData" placeholder="event" (keyup)="updateEvent()"/>
       Date: <input mat-input [matDatepicker]="picker"/> -->
     </div>
+    
 
 
-    <!-- <app-data-display title="Current Repairs" [showDisplay]="true" [data]="messageData"></app-data-display>
-    <app-data-display title="Archived Logs" [showDisplay]="showArchived" [data]="messageData"></app-data-display> -->
-
-
+    
+    <!-- <app-data-display title="Archived Logs" [showDisplay]="showArchived" [data]="messageData"></app-data-display> -->
 
   </div>
+  <div class="display_total">
+    <div>Total In ATM: {{ATM_TOTAL_TEXT}}</div> <div>Total User Has Deposited: {{userEntryValues}}</div>
+  </div>
+  <app-data-display title="SYSTEM LOG" [showDisplay]="true" [priority]="priorityColor" [data]="messageData"></app-data-display>
 </div>

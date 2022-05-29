@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { WeatherForecast } from 'src/app/models/WeatherForecast';
 import { IMessage } from 'src/app/models/Message';
 
 @Component({
@@ -11,10 +10,10 @@ export class FetchDataComponent {
 
   public data : IMessage[] = [];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string){
-    http.get<IMessage[]>(baseUrl + 'message').subscribe((data) => {
-      console.log('Data: ', data);
-      this.data = data;
-    }, error => {console.error(error)});
+    // http.get<IMessage[]>(baseUrl + 'message').subscribe((data) => {
+    //   console.log('Data: ', data);
+    //   this.data = data;
+    // }, error => {console.error(error)});
   }
 }
 

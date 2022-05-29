@@ -6,6 +6,7 @@ import { tap, map, catchError,  } from 'rxjs/operators';
 import { ApiService } from './api.service';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,35 +27,39 @@ export class MessageService {
    }
 
   public getMessages(): IMessage[]{
-    this.http.get<IMessage[]>(this.baseURL + 'message').subscribe((data) => {
-        console.log('Data: ', data);
-        this.data = data;
-      }, error => {console.error(error)});
+    // this.http.get<IMessage[]>(this.baseURL + 'message').subscribe((data) => {
+    //     console.log('Data: ', data);
+    //     this.data = data;
+    //   }, error => {console.error(error)});
     return this.data;
 }
 
   // TODO: Change to taking a IMessage
-  public addMessage(user: string = "default", text: string = "default"): Subject<IMessage[]>{
+  public addMessage(user: string = "default", text: string = "default", priority: string = "blue"): IMessage[]{
 
 
-    console.log('Adding Message => : ', user, text);
+    console.log('Adding Message => : ', user, text, priority);
     MessageService.id += 1;
     const message: IMessage = {
         messageId: MessageService.id,
         user: user,
+        priority: priority,
         message: text,
         dateOfEntry: Date.now().toString()
     }
     console.log('Posting Message: ', message, this.baseURL)
-    this.http.post<IMessage>(this.baseURL + 'message', message).subscribe((message)=>{
-      console.log("Posting Message", message)
-    });
+    console.log(`Total Messages: ${this.data}`)
+    this.messages.subscribe((x) => x.push(message));
+    this.data.push(message);
+    // this.http.post<IMessage>(this.baseURL + 'message', message).subscribe((message)=>{
+    //   console.log("Posting Message", message)
+    // });
             //  .pipe(catchError((error) => { console.log("Something went wrong", error)});
 
     //console.log('Adding Message: ', user, text, message);
     
 
-    return this.messages;
+    return this.data;
 
   }
 
