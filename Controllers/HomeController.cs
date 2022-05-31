@@ -10,13 +10,13 @@ namespace _NetAngularMongo.Controllers
         // GET: HomeController
         public ActionResult Index()
         {
-            string databaseName = "heroeslegends";
+            /*string databaseName = "heroeslegends";
             string collectionName = "messages";
             var client = new MongoClient("mongodb+srv://jrfoxw:packard@cluster0.rda3b.mongodb.net/?retryWrites=true&w=majority");
             var db = client.GetDatabase(databaseName);
-            var collection = db.GetCollection<MessageModel>(collectionName);
+            var collection = db.GetCollection<TransactionModel>(collectionName);
 
-            var message = new MessageModel
+            var message = new TransactionModel
             {
                 MessageId = 3,
                 User = "Gary",
@@ -26,8 +26,8 @@ namespace _NetAngularMongo.Controllers
 
             Console.Write("Adding Db entry");
 
-            var data = new List<MessageModel>() { };
-            collection.InsertOneAsync(message);
+            var data = new List<TransactionModel>() { };
+            collection.InsertOneAsync(message);*/
             return View();
         }
 

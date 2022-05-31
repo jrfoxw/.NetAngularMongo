@@ -4,6 +4,8 @@ import { IMessage } from '../models/Message';
 import { Observable, Subject, of, merge, Subscription, pipe, concat, combineLatest  } from 'rxjs';
 import { tap, map, catchError,  } from 'rxjs/operators';
 import { ApiService } from './api.service';
+import { AtmTransactionService } from './atm-transaction.service';
+import { Transaction } from '../models/Transaction';
 
 
 
@@ -16,15 +18,16 @@ export class MessageService {
   public archived: Subject<IMessage[]> = new Subject<IMessage[]>();
   public messages: Subject<IMessage[]> = new Subject<IMessage[]>();
   public messageLatest: any;
-  private apiHttps: string =  "https://localhost:5001";
-  private api: string = "http://localhost:5000";
   private baseURL = "";
   private data: IMessage[] = []
 
-  constructor(private http:HttpClient, private apiService: ApiService, @Inject('BASE_URL') baseUrl: string) {
-    this.api = apiService.api;
-    this.baseURL = baseUrl;
-   }
+  constructor(
+    private http:HttpClient,
+    private atmTransactionService: AtmTransactionService,
+    @Inject('BASE_URL') baseUrl: string
+    ) {
+    this.baseURL = baseUrl; 
+  }
 
   public getMessages(): IMessage[]{
     return this.data;
@@ -43,11 +46,9 @@ export class MessageService {
         message: text,
         dateOfEntry: Date.now().toString()
     }
-    console.log('Posting Message: ', message, this.baseURL)
-    console.log(`Total Messages: ${this.data}`)
     this.messages.subscribe((x) => x.push(message));
     this.data.push(message);
-
+    this.atmTransactionService.addTransaction(new Transaction(user, text));
     return this.data;
 
   }
@@ -60,13 +61,8 @@ export class MessageService {
     this.messages.subscribe((messages) => messages = []);
   }
 
-  public getArchived(): Observable<IMessage[]> {
-    console.log('Archived Messages', this.archived);
-    return this.archived;
-  }
 
   public handleError(message: string){
 
   }
-  
 }

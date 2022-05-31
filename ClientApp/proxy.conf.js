@@ -7,6 +7,7 @@ const PROXY_CONFIG = [
   {
     context: [
       "/message",
+      "/transaction",
       "/currency",
       "/atm",
       "/user"

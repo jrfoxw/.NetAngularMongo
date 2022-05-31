@@ -13,9 +13,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IMessageService, MessageService>();
+//builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<IATMService, ATMService>();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
+builder.Services.AddScoped<ITransactionLogService, TransactionLogService>();
 
 
 builder.Configuration.GetConnectionString("db");

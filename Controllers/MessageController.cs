@@ -44,7 +44,7 @@ public class MessageController : ControllerBase
 
 
     [HttpPost]
-    public void Post(MessageModel message)
+    public void Post(TransactionModel message)
     {
 
         var messageService = new MessageService(_config);

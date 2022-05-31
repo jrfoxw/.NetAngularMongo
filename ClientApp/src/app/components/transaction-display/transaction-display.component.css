@@ -1,0 +1,8 @@
+.datalist{
+    width: 100%;
+    background: black;
+    color: yellow;
+    height: 700px;
+    overflow-x: scroll;
+    padding: 5px;
+}

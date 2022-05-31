@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlayerPanelComponent } from './player-panel.component';
+import { TransactionDisplayComponent } from './transaction-display.component';
 
-describe('PlayerPanelComponent', () => {
-  let component: PlayerPanelComponent;
-  let fixture: ComponentFixture<PlayerPanelComponent>;
+describe('TransactionDisplayComponent', () => {
+  let component: TransactionDisplayComponent;
+  let fixture: ComponentFixture<TransactionDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlayerPanelComponent ]
+      declarations: [ TransactionDisplayComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlayerPanelComponent);
+    fixture = TestBed.createComponent(TransactionDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -14,10 +14,10 @@ namespace _NetAngularMongo.Services
             _config = config;
         }
 
-        public void AddMessage(MessageModel message)
+        public void AddMessage(TransactionModel message)
         {
-            var db = new Data.MongDbContext<MessageModel>(_config).connect();
-            var selectedCollection = db.GetCollection<MessageModel>("messages");
+            var db = new Data.MongDbContext<TransactionModel>(_config).connect();
+            var selectedCollection = db.GetCollection<TransactionModel>("messages");
             if (message != null)
             {
 
@@ -26,13 +26,13 @@ namespace _NetAngularMongo.Services
 
         }
 
-        public async Task<List<MessageModel>> getMessages()
+        public async Task<List<TransactionModel>> getMessages()
         {
-            var messages = new List<MessageModel>();
-            var db = new Data.MongDbContext<MessageModel>(_config).connect();
-            var collection = db.GetCollection<MessageModel>("atm_denominations");
-            var messageList = await collection.FindAsync<MessageModel>(_ => true);
-            messages = messageList.ToList<MessageModel>();
+            var messages = new List<TransactionModel>();
+            var db = new Data.MongDbContext<TransactionModel>(_config).connect();
+            var collection = db.GetCollection<TransactionModel>("atm_denominations");
+            var messageList = await collection.FindAsync<TransactionModel>(_ => true);
+            messages = messageList.ToList<TransactionModel>();
             return messages;
         }
 

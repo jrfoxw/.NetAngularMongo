@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using _NetAngularMongo.Models;
+using _NetAngularMongo.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _NetAngularMongo.Controllers
@@ -7,11 +9,26 @@ namespace _NetAngularMongo.Controllers
     [Route("[controller]")]
     public class TransactionController : ControllerBase
     {
+        private readonly ITransactionLogService _transactionLogService;
+        private readonly IConfiguration _config;
+
+        public TransactionController(IConfiguration config, ITransactionLogService transactionLogService)
+        {
+            _config = config;
+            _transactionLogService = transactionLogService;
+        }
+
         // GET: TransactionController
         [HttpGet]
-        public void Index()
+        public async Task<List<TransactionModel>> Get()
         {
-            Console.WriteLine("Conntected to Transaction controller");
+            return await _transactionLogService.getTransactions();
+        }
+
+        [HttpPost]
+        public void Post(TransactionModel[] transactions)
+        {
+            _transactionLogService.AddTransactions(transactions);
         }
     }
 }

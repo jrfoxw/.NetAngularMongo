@@ -19,8 +19,7 @@
       <div class="mode">
         MODE: {{atmMode}}
       </div>
-      
-      
+
       <mat-grid-list cols="3" rowHeight="50px" rowWidth="150px">
         <mat-grid-tile><app-button text="$1" (btnClickEvent)="updateValue(1,'ONES')"></app-button></mat-grid-tile>
         <mat-grid-tile><app-button text="$5" (btnClickEvent)="updateValue(5, 'FIVES')"></app-button></mat-grid-tile>
@@ -39,15 +38,7 @@
       </div>
 
 
-      <!-- Who: <input mat-input [(ngModel)]="userData" placeholder="user" (keyup)="updateUser()"/>
-      What: <input mat-input [(ngModel)]="eventData" placeholder="event" (keyup)="updateEvent()"/>
-      Date: <input mat-input [matDatepicker]="picker"/> -->
     </div>
-    
-
-
-    
-    <!-- <app-data-display title="Archived Logs" [showDisplay]="showArchived" [data]="messageData"></app-data-display> -->
 
   </div>
   <app-total-display [total]="ATM_TOTAL_TEXT"></app-total-display>

@@ -7,6 +7,8 @@ import { ATM_TRANSACTION_MODES, IATM, ATM } from 'src/app/models/ATM';
 import { Denomination, DenominationsEnum, IDenomination } from 'src/app/models/Denomination';
 import User from 'src/app/models/User';
 import { CurrencyService } from 'src/app/services/currency.service';
+import { ITransaction } from 'src/app/models/Transaction';
+import { AtmTransactionService } from 'src/app/services/atm-transaction.service';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,7 @@ export class HomeComponent {
   public showArchived: boolean = false;
   public messageSub: Subscription = new Subscription();
   public messageData: IMessage[] = new Array<IMessage>();
+  public transactionData: ITransaction[] = [];
   public userData: string = '';
   public ATM_TOTAL: number = 0;
   public userEntryValues: number = 0;
@@ -44,7 +47,8 @@ export class HomeComponent {
   constructor(
     private messageService: MessageService,
     private currencyService: CurrencyService,
-    private ATMService: ATMService
+    private ATMService: ATMService,
+    private atmTransactionService: AtmTransactionService
   ) {
     this.user = new User('George', 120, this.messageService);
     this.atmModel = new ATM();
@@ -126,9 +130,9 @@ export class HomeComponent {
           this.currencyService.updateCurrencies(this.temp_denominations).subscribe(result => {
             console.table(result);
           });
+          
           this.showAllCurrencies();
         };
-        
         break;
       }
       case ATM_TRANSACTION_MODES.WITHDRAW: {
@@ -261,6 +265,7 @@ export class HomeComponent {
   showUserTransactions() {}
 
   showAllCurrencies(){
+    this.atmTransactionService.submitTransactions();
     this.messageService.addMessage("*****************","DENOMINATIONS STORED", "red");
     this.denominations.forEach(x => {
       this.messageService.addMessage("DENOMINATIONS", `TYPE: $${x.value}.00 AMOUNT: ${x.amount} TOTAL: ${x.total}`, "red");
