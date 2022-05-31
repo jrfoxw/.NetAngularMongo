@@ -3,6 +3,7 @@
     margin-top: 20px;
     width: 90%;
     height: 300px;
+    min-width: 700px;
     overflow-x: scroll;
 
 }
@@ -15,4 +16,5 @@
     margin-top: 5px;
     margin-top: 2px;
     padding: 5px;
+    min-width: 700px;
 }

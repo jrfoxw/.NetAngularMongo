@@ -11,7 +11,6 @@ import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/layout/nav-menu/nav-menu.component';
 import { HomeComponent } from './components/home/home.component';
-import { CounterComponent } from './components/counter/counter.component';
 import { FetchDataComponent } from './components/fetch-data/fetch-data.component';
 import { PlayerPanelComponent } from './components/panels/player-panel/player-panel.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -41,6 +40,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TotalDisplayComponent } from './components/total-display/total-display.component';
 
 
 @NgModule({
@@ -48,7 +48,6 @@ import { MatNativeDateModule } from '@angular/material/core';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     FetchDataComponent,
     PlayerPanelComponent,
     ButtonComponent,
@@ -58,7 +57,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     DashboardComponent,
     AddressFormComponent,
     PlayerTableComponent,
-    TodoListComponent
+    TodoListComponent,
+    TotalDisplayComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -68,9 +68,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'address-form', component: AddressFormComponent },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'todo', component: TodoListComponent },
     ]),

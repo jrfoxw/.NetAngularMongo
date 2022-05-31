@@ -27,10 +27,6 @@ export class MessageService {
    }
 
   public getMessages(): IMessage[]{
-    // this.http.get<IMessage[]>(this.baseURL + 'message').subscribe((data) => {
-    //     console.log('Data: ', data);
-    //     this.data = data;
-    //   }, error => {console.error(error)});
     return this.data;
 }
 
@@ -51,13 +47,6 @@ export class MessageService {
     console.log(`Total Messages: ${this.data}`)
     this.messages.subscribe((x) => x.push(message));
     this.data.push(message);
-    // this.http.post<IMessage>(this.baseURL + 'message', message).subscribe((message)=>{
-    //   console.log("Posting Message", message)
-    // });
-            //  .pipe(catchError((error) => { console.log("Something went wrong", error)});
-
-    //console.log('Adding Message: ', user, text, message);
-    
 
     return this.data;
 

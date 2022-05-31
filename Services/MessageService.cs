@@ -5,11 +5,11 @@ using MongoDB.Driver;
 
 namespace _NetAngularMongo.Services
 {
-    public class CurrencyService : ServiceCollection, IMessageService
+    public class MessageService : ServiceCollection, IMessageService
     {
         private readonly IConfiguration _config;
 
-        public CurrencyService(IConfiguration config)
+        public MessageService(IConfiguration config)
         {
             _config = config;
         }

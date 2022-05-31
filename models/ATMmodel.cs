@@ -9,13 +9,14 @@ namespace _NetAngularMongo.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
-        public bool IsOnline { get; set; }
-        public int MaxCurrency {get; set; }
-        public int TotalCurrency { get; set; }
-        public int TotalDeposits { get; set; }
-        public int TotalWithdraws { get; set; }
-        public DateTime MaintenanceTime { get; set; }
+        public string id { get; set; } = "";
+        public bool isOnline { get; set; }
+        public string? unitName { get; set; } = "ATM1";
+        public int maxCurrency {get; set; }
+        public int totalCurrency { get; set; }
+        public int totalDeposits { get; set; }
+        public int totalWithdraws { get; set; }
+        public string maintenanceTime { get; set; } = new DateTime().ToString();
 
 
     }

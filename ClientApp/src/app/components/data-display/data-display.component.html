@@ -1,6 +1,6 @@
+<h3>{{title}}</h3>
 <div class="box" *ngIf="showDisplay">
-    <h3>{{title}}</h3>
     <div *ngFor="let d of data">
-      <div class="archived_entry" [ngStyle]="{'color': priority}">{{d.messageId}}: {{d.user}}: {{d.message}} [{{d.dateOfEntry}}]</div>
+      <div class="archived_entry" [ngStyle]="{'color': d.priority}">[{{d.dateOfEntry}}]::::: {{d.user}}: {{d.message}} </div>
       </div>
   </div>

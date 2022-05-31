@@ -15,7 +15,9 @@ export class CurrencyService {
   private api: string = "http://localhost:5000";
   private baseURL = "";
   public denominations: IDenomination[] = [];
-  public TotalInCurrency: number = 0;
+  public TotalInCurrency = 0;
+  public data: Observable<IDenomination[]> = new Observable<IDenomination[]>();
+  public currencies: IDenomination[] = [];
 
 
   constructor(private http:HttpClient, private apiService: ApiService, @Inject('BASE_URL') baseUrl: string) {
@@ -23,22 +25,73 @@ export class CurrencyService {
     this.baseURL = baseUrl;
   }
 
-  public setDefaults(){
-    this.denominations.push(new Denomination(DenominationsEnum.ONES, 10))
-    this.denominations.push(new Denomination(DenominationsEnum.FIVES, 10))
-    this.denominations.push(new Denomination(DenominationsEnum.TENS, 10))
-    this.denominations.push(new Denomination(DenominationsEnum.TWENTIES, 10))
-    this.denominations.push(new Denomination(DenominationsEnum.FIFTIES, 10))
-    this.denominations.push(new Denomination(DenominationsEnum.HUNDREDS, 10))
-
-    this.TotalInCurrency += DenominationsEnum.ONES * 10;
-    this.TotalInCurrency += DenominationsEnum.FIVES * 10;
-    this.TotalInCurrency += DenominationsEnum.TENS * 10;
-    this.TotalInCurrency += DenominationsEnum.TWENTIES * 10;
-    this.TotalInCurrency += DenominationsEnum.FIFTIES * 10;
-    this.TotalInCurrency += DenominationsEnum.HUNDREDS * 10;
-
-    console.log("Total Currency: ", this.TotalInCurrency);
-
+  public getCurrenciesAndSetDefaultValues(){
+    return this.getCurrencies().subscribe(
+      (response: IDenomination[]) => { this.currencies = response; },
+      (error: any) => {console.error("Error has occurred",error)},
+      () => {
+        console.log("Retrieved Denominations: ", this.currencies);
+        this.setDefaults(this.currencies);
+      }
+    );
   }
-}
+
+  public getCurrencies(): Observable<IDenomination[]>{
+    return this.http.get<IDenomination[]>(this.baseURL + 'currency')
+      // .subscribe((result: IDenomination[]) => {
+      //   this.currencies = result;
+      //   this.setDefaults();
+      //   console.log("Getting Currencies... ", this.currencies)
+        //return result;
+      // this.data
+      //   .subscribe(x => {
+      //     this.currencies = x;
+      //     console.log("Getting Currencies... ", result)
+      //     return result;
+      //   });
+    //}, error  => {console.error("Failed to get currencies from api.")})
+    //return this.currencies;
+  }
+
+  public updateCurrencies(denominations: IDenomination[]): Observable<IDenomination[]>{
+    console.log('PUT REQUEST => DENOMINATIONS: ', denominations);
+    return this.http.put<IDenomination[]>(this.baseURL + 'currency', denominations)
+  }
+
+  public async setDefaults(data: IDenomination[]){
+
+    // return await this.getCurrencies()
+    //   .then((result) =>
+    //     {
+    //       console.log('Currencies Result: ', result);
+    //       return result;
+    //     })
+    //   .catch(error => console.error('There was an error: ', error.message));
+
+    // this.http.get<IMessage[]>(this.baseURL + 'message').subscribe((data) => {
+    //     console.log('Data: ', data);
+    //     this.data = data;
+    //   }, error => {console.error(error)});
+
+    // return this.http.get<IDenomination[]>(this.baseURL + 'currency').subscribe((data) => {
+    //     console.log('Data: ', data);
+    //     this.data = data;
+    //     data.forEach(dat => {
+    //       this.denominations.push(new Denomination(Denomination.getEnumValue(dat), dat.value, dat.amount, dat.total))
+    //       this.TotalInCurrency +=  Denomination.getEnumValue(dat) * dat.amount;
+    //     })
+    //     console.log('Data Updated: ', this.TotalInCurrency);
+    //     return this.TotalInCurrency;
+    //   }, error => {console.error(error)});
+
+      console.log("Setting Defaults: ", data)
+
+      data.forEach(dat => {
+        console.log('Currency Data: ',dat);
+        this.denominations.push(new Denomination(Denomination.getEnumValue(dat), dat.value, dat.amount, dat.total))
+        this.TotalInCurrency +=  Denomination.getEnumValue(dat) * dat.amount;
+      })
+
+      console.log("Setting Defaults Total Currency: ", this.TotalInCurrency);
+    }
+  }

@@ -17,6 +17,7 @@ builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<IATMService, ATMService>();
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
 
+
 builder.Configuration.GetConnectionString("db");
 
 /*builder.Configuration.SetBasePath(Directory.GetCurrentDirectory())

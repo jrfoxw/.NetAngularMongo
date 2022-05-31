@@ -1,7 +1,13 @@
-﻿namespace _NetAngularMongo.Services
+﻿using _NetAngularMongo.Models;
+using MongoDB.Driver;
+
+namespace _NetAngularMongo.Services
 {
     public interface IATMService
     {
-        void connectToATM();
+        IMongoCollection<ATMmodel> connectToATM();
+        Task<ATMmodel> updateATMAsync(ATMmodel atm);
+        Task<ATMmodel> getATMAsync();
+        //Task updateDeposits(int value, ATMmodel atm);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using _NetAngularMongo.Models;
+using _NetAngularMongo.Services;
 using Microsoft.AspNetCore.Mvc;
-
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace _NetAngularMongo.Controllers
 {
@@ -9,25 +11,27 @@ namespace _NetAngularMongo.Controllers
     public class CurrencyController : Controller
     {
         private readonly IConfiguration _config;
-        public CurrencyController()
+        private readonly ICurrencyService _currencyService;
+        public CurrencyController(IConfiguration config, ICurrencyService currencyService)
         {
-
+            _config = config;
+            _currencyService = currencyService;
         }
 
         [HttpGet]
         public async Task<List<CurrencyModel>> Get()
         {
 
-            /*var n = new ControllerFeature().Controllers;
-            Console.WriteLine("Controllers: ", n.Count);*/
-
-            var data = new Data.MongDbContext<CurrencyModel>(_config).connect();
-            var messages = data.GetCollection<CurrencyModel>("atm_denominations");
-            var messageList = await messages.FindAsync<CurrencyModel>(_ => true);
-
-            return messageList.ToList<CurrencyModel>();
+            return await _currencyService.getDenominations();
 
         }
+
+        [HttpPut]
+        public async Task<List<CurrencyModel>> UpdateCurrencies(List<CurrencyModel> currency)
+        {
+            return await _currencyService.updateDenominations(currency);
+        }
+
 
     }
 }

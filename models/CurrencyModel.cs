@@ -13,6 +13,7 @@ namespace _NetAngularMongo.Models
         public string name { get; set; } = "";
         public int value { get; set; } = 0;
         public int amount { get; set; } = 0;
+        public int total { get; set; } = 0;
 
         public CurrencyModel AddCurrency(string _name, int _value)
         {

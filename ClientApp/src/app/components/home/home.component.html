@@ -7,24 +7,36 @@
 
     <div class="selection_block">
       <img src="/assets/wsatm_logo.png" alt="worlds simplest atm logo" width="256" height="256"/>
-      <mat-grid-list cols="2" rowHeight="50px">
+      <mat-grid-list cols="1" rowHeight="50px">
         <mat-grid-tile><app-button text="Withdraw" color="green" (btnClickEvent)="makeATMWithdraw()"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="Deposit" color="coral" (btnClickEvent)="removeEntry()"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="Balance" color="blue" (btnClickEvent)="viewArchivedEntries()"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="Transactions" color="silver" (btnClickEvent)="clearEntries()"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="Deposit" color="coral" (btnClickEvent)="makeATMDeposit()"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="Balance" color="blue" (btnClickEvent)="showUserBalance()"></app-button></mat-grid-tile>
+        <mat-grid-tile colspan="1"><app-button text="Denominations" color="silver" (btnClickEvent)="showAllCurrencies()"></app-button></mat-grid-tile>
       </mat-grid-list>
     </div>
 
-    <div class="keypad_block">
-      <mat-grid-list cols="3" rowHeight="100px" rowWidth="50px">
-        <mat-grid-tile><app-button text="$1" (btnClickEvent)="updateValue(1)"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="$5" (btnClickEvent)="updateValue(5)"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="$10" (btnClickEvent)="updateValue(10)"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="$20" (btnClickEvent)="updateValue(20)"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="$50" (btnClickEvent)="updateValue(50)"></app-button></mat-grid-tile>
-        <mat-grid-tile><app-button text="$100" (btnClickEvent)="updateValue(100)"></app-button></mat-grid-tile>
-        <mat-grid-tile colspan="3"><app-button text="CLEAR" (btnClickEvent)="updateValue(1)"></app-button></mat-grid-tile>
+    <div class="keypad_block" [ngStyle]="{'color': errorColor}">
+      <div class="mode">
+        MODE: {{atmMode}}
+      </div>
+      
+      
+      <mat-grid-list cols="3" rowHeight="50px" rowWidth="150px">
+        <mat-grid-tile><app-button text="$1" (btnClickEvent)="updateValue(1,'ONES')"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$5" (btnClickEvent)="updateValue(5, 'FIVES')"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$10" (btnClickEvent)="updateValue(10, 'TENS')"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$20" (btnClickEvent)="updateValue(20,'TWENTIES')"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$50" (btnClickEvent)="updateValue(50, 'FIFTIES' )"></app-button></mat-grid-tile>
+        <mat-grid-tile><app-button text="$100" (btnClickEvent)="updateValue(100, 'HUNDREDS')"></app-button></mat-grid-tile>
+        <mat-grid-tile colspan="3"><app-button text="CLEAR" (btnClickEvent)="clearAll()"></app-button></mat-grid-tile>
+        <mat-grid-tile colspan="3"><app-button text="COMMIT" (btnClickEvent)="commitTransaction()"></app-button></mat-grid-tile>
       </mat-grid-list>
+
+      <div class="status">
+        <div>YOUR CURRENT FUNDS: {{user.totalAmountString}}</div>
+        <div>ENTERED AMOUNT: {{userEntryValues}}</div>
+        <div *ngIf="alertActive">{{alert}}</div>
+      </div>
 
 
       <!-- Who: <input mat-input [(ngModel)]="userData" placeholder="user" (keyup)="updateUser()"/>
@@ -38,8 +50,6 @@
     <!-- <app-data-display title="Archived Logs" [showDisplay]="showArchived" [data]="messageData"></app-data-display> -->
 
   </div>
-  <div class="display_total">
-    <div>Total In ATM: {{ATM_TOTAL_TEXT}}</div> <div>Total User Has Deposited: {{userEntryValues}}</div>
-  </div>
+  <app-total-display [total]="ATM_TOTAL_TEXT"></app-total-display>
   <app-data-display title="SYSTEM LOG" [showDisplay]="true" [priority]="priorityColor" [data]="messageData"></app-data-display>
 </div>

@@ -1,0 +1,21 @@
+.display_total {
+    margin-top: 20px;
+    /* border: 2px solid rgba(100,100,100,0.2); */
+    font-size: 1.5em;
+    color: green;
+}
+
+.reset_btn {
+    float: right;
+    color: white;
+    background: rgb(151, 9, 9);
+    border-radius: 9px;
+    font-size: .8em;
+    cursor: pointer;
+}
+
+.reset_btn:hover{
+    background:rgb(162, 37, 37);
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+}
